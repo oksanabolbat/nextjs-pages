@@ -1,6 +1,7 @@
 import EventContent from "@/components/events/event-content";
 import EventLogistics from "@/components/events/event-logistics";
 import EventSummary from "@/components/events/event-summary";
+import ErrorAlert from "@/components/ui/error-alert";
 import { getEventById } from "@/data";
 import { useRouter } from "next/router";
 
@@ -9,7 +10,11 @@ export default function EventPage() {
 
     const event = getEventById(params.query.eventid);
     if (!event) {
-        return <p>Sorry, no event found!</p>;
+        return (
+            <ErrorAlert>
+                <p>Sorry, no event found!</p>
+            </ErrorAlert>
+        );
     }
     console.log(event);
     return (
